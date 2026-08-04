@@ -104,6 +104,25 @@ def read():
     user_input = "\n".join(lines)
     return user_input
 
-result = crew.kickoff(inputs={"code":read()})
+def read_file(code):
+   
+    with open(code,"r") as file:
+       txt = file.read()
+
+    return txt
+
+
+print("""Choose your option 
+      1 for pasting the code
+      2 for uploading a code file""")
+option = input()
+
+if(option=="1"):
+    result = crew.kickoff(inputs={"code":read()})
+elif(option=="2"):
+    result =crew.kickoff(inputs={"code":read_file(input())})
+else:
+    print("No Such Option")
+
 
 print(result)
