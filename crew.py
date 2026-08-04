@@ -53,6 +53,23 @@ quality_reviewer_task = Task(
     agent = quality_reviewer
 )
 
+security_agent = Agent(
+    role = "Security Agent",
+    goal = "Report security vulrenabilities in the {code}",
+    backstory = "You are a Security Agent that reports security vulnerabilities which can be exploited",
+    llm = llm,
+    verbose = False
+)
+
+security_agent_task = Task(
+    description= """Scan the Code and search for security vulnerabilities that can be exploited
+    or prove dangerous""",
+    expected_output= """A structured output mentioning the security risks such as Injections,
+    Hardcoded credentials,overflows, etc.""",
+    agent = security_agent
+
+)
+
 checklist_compiler = Agent(
     role = " Checklist compiler",
     goal = "Compile all the results provided and sort them by priority",
@@ -71,8 +88,8 @@ checklist_compiler_task = Task(
 )
 
 crew = Crew(
-    agents= [code_reader,bug_hunter,quality_reviewer,checklist_compiler],
-    tasks=  [code_reader_task,bug_hunter_task,quality_reviewer_task,checklist_compiler_task],
+    agents= [code_reader,bug_hunter,quality_reviewer,security_agent,checklist_compiler],
+    tasks=  [code_reader_task,bug_hunter_task,quality_reviewer_task,security_agent_task,checklist_compiler_task],
     process = Process.sequential
 )
 
