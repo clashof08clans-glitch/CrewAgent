@@ -111,18 +111,18 @@ def read_file(code):
 
     return txt
 
+if __name__ == "__main__":
+    print("""Choose your option 
+        1 for pasting the code
+        2 for uploading a code file""")
+    option = input()
 
-print("""Choose your option 
-      1 for pasting the code
-      2 for uploading a code file""")
-option = input()
-
-if(option=="1"):
-    result = crew.kickoff(inputs={"code":read()})
-elif(option=="2"):
-    result =crew.kickoff(inputs={"code":read_file(input())})
-else:
-    print("No Such Option")
+    if(option=="1"):
+        result = crew.kickoff(inputs={"code":read()})
+    elif(option=="2"):
+        result =crew.kickoff(inputs={"code":read_file(input())})
+    else:
+        print("No Such Option")
 
 
-print(result)
+    print(result)
