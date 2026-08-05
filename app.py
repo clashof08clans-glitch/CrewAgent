@@ -12,6 +12,7 @@ if option=="Paste Code":
     if st.button("Code review"):
         result = crew.kickoff(inputs={"code":code_paste})
         st.write(result.raw)
+        st.download_button(label="Review file download",data= result.raw,file_name="review.md")
 
 else :
     code_file= st.file_uploader("Upload a code file")
@@ -20,3 +21,4 @@ else :
         if st.button("Code Review"):
             result = crew.kickoff(inputs={"code":code_txt})
             st.write(result.raw)
+            st.download_button(label="Review file download",data= result.raw,file_name="review.md")
