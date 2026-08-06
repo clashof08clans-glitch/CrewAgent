@@ -34,7 +34,8 @@ bug_hunter_task = Task(
     description= """Analyze the code and find 1) Syntax Errors,2) Logical Errors
     3)Runtime errors 4) Other bugs that ruin the code""",
     expected_output= """A structured output mentioning all the errors and where they occur in the code""",
-    agent= bug_hunter
+    agent= bug_hunter,
+    async_execution=True
 )
 
 quality_reviewer = Agent(
@@ -50,7 +51,8 @@ quality_reviewer_task = Task(
     3) General complexity 4) Readiness 5) Other viewing aspects""",
     expected_output= """A structure output mentioning 1) Quality 2)Complexity 3)Readniess 
     4) Some other major viewpoints""",
-    agent = quality_reviewer
+    agent = quality_reviewer,
+    async_execution=True
 )
 
 security_agent = Agent(
@@ -66,7 +68,8 @@ security_agent_task = Task(
     or prove dangerous""",
     expected_output= """A structured output mentioning the security risks such as Injections,
     Hardcoded credentials,overflows, etc.""",
-    agent = security_agent
+    agent = security_agent,
+    async_execution=True
 
 )
 
@@ -123,6 +126,5 @@ if __name__ == "__main__":
         result =crew.kickoff(inputs={"code":read_file(input())})
     else:
         print("No Such Option")
-
 
     print(result)
